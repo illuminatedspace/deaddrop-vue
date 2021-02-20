@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root">
+      <p>{{doubledMessage}}</p>
+      <button @click="reverseMessage">Reverse Message</button>
+    </div>
+
+    <script>
+      const EventHandling = {
+        data() {
+          return {
+            message: "Hello Twitch!",
+          };
+        },
+        created() {
+          console.log("message is: ", this.message);
+        },
+        methods: {
+          reverseMessage() {
+            this.message = this.message.split("").reverse().join("");
+          },
+        },
+        computed: {
+          doubledMessage() {
+            return this.message + this.message;
+          },
+        },
+      };
+
+      const app = Vue.createApp(EventHandling);
+      const viewModel = app.mount("#root");
+
+      console.log(viewModel.message);
+      console.log(viewModel.$data.message);
+    </script>
+  </body>
+</html>
